@@ -2,9 +2,13 @@
 Monitoring Social Distancing using AI
 
 
-#command to Run the code
+## docker support 
+#### build docker image
+docker build -f Dockerfile -t safe_building:latest .
 
+#### run docker image
+docker run -it safe_building 
 
-python3.6 main_v2.py --videopath https://votttest.blob.core.windows.net/vottstorage/GroceryStore2.mp4 --coordinateJson inputcordinate.json --outputJson output.json --outputCycle 30
+# command to Run the code
 
-
+python3.6 app/main_v2.py --videopath https://votttest.blob.core.windows.net/vottstorage/GroceryStore2.mp4 --coordinateJson inputcordinate.json --outputJson output.json --outputCycle 30
