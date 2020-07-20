@@ -1,0 +1,58 @@
+{
+    "CameraId": "234545",
+    "SpaceId": "5",
+    "Location": "Bentonville/WCB1/Floor 1/Cafeteria",
+    "Areas": {
+      "areas": [
+        {
+          "AreaLabel": "Area 1",
+          "CameraCoordinates": [
+            {
+              "Vertex": "A",
+              "X": "98",
+              "Y": "111"
+            },
+            {
+              "Vertex": "B",
+              "X": "112",
+              "Y": "227"
+            },
+            {
+              "Vertex": "C",
+              "X": "56",
+              "Y": "410"
+            },
+            {
+              "Vertex": "D",
+              "X": "258",
+              "Y": "284"
+            }
+          ],
+          "FloorPlanCoordinates": [
+            {
+              "Vertex": "A",
+              "X": "100",
+              "Y": "400"
+            },
+            {
+              "Vertex": "B",
+              "X": "250",
+              "Y": "600"
+            },
+            {
+              "Vertex": "C",
+              "X": "150",
+              "Y": "850"
+            },
+            {
+              "Vertex": "D",
+              "X": "850",
+              "Y": "700"
+            }
+          ],
+          "PeopleThreshold": 20,
+          "SectionArea": 100
+        }
+      ]
+    }
+  }
