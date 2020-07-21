@@ -23,25 +23,52 @@ app = Flask(__name__)
 # Suppress TF warnings
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
-# Yolo V3 model defination
-inputs = tf.placeholder(tf.float32, [None, 416, 416, 3])
-model = nets.YOLOv3COCO(inputs, nets.Darknet19)
 
-classes={'0':'person','1':'bicycle','2':'car','3':'bike','5':'bus','7':'truck'}
-list_of_classes=[0,1,2,3,5,7]
-sess = tf.Session()
-sess.run(model.pretrained())
+def process_frame(imageData):
+    # load the image
+    img = Image.open(imageData).convert('RGB') 
+    img.load()
+    open_cv_image = numpy.array(img)
+    frame = open_cv_image[:, :, ::-1].copy() 
+    processed_frame = cv2.resize(frame, (416,416))
+    return processed_frame
 
 
-# function to calculate no. person detected and their bounding box
-def pedDetection(frame):
+def points_on_Layout_view(pedestrian_boxes, M, Outdata):
+    # function to map points on Floor Plan Layout
+    for i in range(len(pedestrian_boxes)):
+        mid_point_x = int(
+            (pedestrian_boxes[i][0] + pedestrian_boxes[i][2] ) / 2
+        )
+
+        mid_point_y = pedestrian_boxes[i][3]
+
+        pts = np.array([[[mid_point_x, mid_point_y]]], dtype="float32")
+        warped_pt = cv2.perspectiveTransform(pts, M)[0][0]
+
+        Outdata['PeopleDetails'].append({'X':int(warped_pt[0]),'Y':int(warped_pt[1])})
+    return Outdata
+
+
+def get_prediction(frame):
+    # Yolo V3 model defination
+    inputs = tf.placeholder(tf.float32, [None, 416, 416, 3])
+    model = nets.YOLOv3COCO(inputs, nets.Darknet19)
+
+    classes={'0':'person','1':'bicycle','2':'car','3':'bike','5':'bus','7':'truck'}
+    list_of_classes=[0,1,2,3,5,7]
+    sess = tf.Session()
+    sess.run(model.pretrained())
     img = frame
     imge=np.array(img).reshape(-1,416,416,3)
+
+    # function to calculate no. person detected and their bounding box
     preds = sess.run(model.preds, {inputs: model.preprocess(imge)})
     boxes = model.get_boxes(preds, imge.shape[1:3])
     boxes1=np.array(boxes)
     pedestrian_boxes = []
     total_pedestrians = 0
+    
     for j in list_of_classes:
         count =0
         if str(j) in classes:
@@ -53,33 +80,15 @@ def pedDetection(frame):
                     count += 1
                     total_pedestrians = total_pedestrians + 1
                     pedestrian_boxes.append(box)
+    
+    sess.close()
     return pedestrian_boxes,total_pedestrians
 
 
-# function to map points on Floor Plan Layout
-def points_on_Layout_view(pedestrian_boxes, M,Outdata):
-    for i in range(len(pedestrian_boxes)):
-
-        mid_point_x = int(
-            (pedestrian_boxes[i][0] + pedestrian_boxes[i][2] ) / 2
-        )
-
-        mid_point_y = pedestrian_boxes[i][3]
-
-        pts = np.array([[[mid_point_x, mid_point_y]]], dtype="float32")
-        warped_pt = cv2.perspectiveTransform(pts, M)[0][0]
-
-        Outdata['PeopleDetails'].append({'X':int(warped_pt[0]),'Y':int(warped_pt[1])})
-        
-    return Outdata
-
-
 # Process frame, and map coordinates
-def personDetect(frame,cameraid):
-    frame = cv2.resize(frame,(416,416))
-    
+def personDetect(frame, cameraid):
     # load input camera and layout details in json format
-    with open('config.json') as f:
+    with open('../data/config.json') as f:
       configdata = json.load(f)
 
     for j,k in enumerate(configdata['Camera']):
@@ -121,9 +130,9 @@ def personDetect(frame,cameraid):
 
     # Detect person and bounding boxes using DNN
     start_time=time.time()
-    
-    pedestrian_boxes, num_pedestrians = pedDetection(frame)
+    pedestrian_boxes, num_pedestrians = get_prediction(frame)
     print("--- %s seconds ---" % (time.time() - start_time))
+
     Outdata['PeopleCount']= len(pedestrian_boxes)
 
     # map point cordinates, when there is person
@@ -148,15 +157,11 @@ def safebuild():
                 print('EXCEPTION:', str(ex))                                
 
         imageData = io.BytesIO(request.get_data())
-        
-        # load the image
-        img = Image.open(imageData).convert('RGB') 
-        img.load()
 
-        open_cv_image = numpy.array(img)
-        open_cv_image = open_cv_image[:, :, ::-1].copy() 
+        processed_img = process_frame(imageData)
 
         outputJson = personDetect(open_cv_image, cameraID)
+
         print("outputJson",outputJson
         
         return jsonify(outputJson)  
