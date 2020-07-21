@@ -24,16 +24,6 @@ app = Flask(__name__)
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 
-def process_frame(imageData):
-    # load the image
-    img = Image.open(imageData).convert('RGB') 
-    img.load()
-    open_cv_image = numpy.array(img)
-    frame = open_cv_image[:, :, ::-1].copy() 
-    processed_frame = cv2.resize(frame, (416,416))
-    return processed_frame
-
-
 def points_on_Layout_view(pedestrian_boxes, M, Outdata):
     # function to map points on Floor Plan Layout
     for i in range(len(pedestrian_boxes)):
@@ -87,6 +77,7 @@ def get_prediction(frame):
 
 # Process frame, and map coordinates
 def personDetect(frame, cameraid):
+    frame = cv2.resize(frame, (416,416))
     # load input camera and layout details in json format
     with open('../data/config.json') as f:
       configdata = json.load(f)
@@ -157,10 +148,9 @@ def safebuild():
                 print('EXCEPTION:', str(ex))                                
 
         imageData = io.BytesIO(request.get_data())
+        processed_img = cv2.imdecode(np.frombuffer(imageData.getbuffer(), np.uint8), -1)
 
-        processed_img = process_frame(imageData)
-
-        outputJson = personDetect(open_cv_image, cameraID)
+        outputJson = personDetect(processed_img, cameraID)
 
         print("outputJson",outputJson
         
