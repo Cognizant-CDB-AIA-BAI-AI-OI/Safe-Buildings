@@ -41,6 +41,7 @@ def points_on_Layout_view(pedestrian_boxes, M, Outdata):
 
 
 def get_prediction(frame):
+    # TO-DO build model once
     # Yolo V3 model defination
     inputs = tf.placeholder(tf.float32, [None, 416, 416, 3])
     model = nets.YOLOv3COCO(inputs, nets.Darknet19)
@@ -152,7 +153,7 @@ def safebuild():
 
         outputJson = personDetect(processed_img, cameraID)
 
-        print("outputJson",outputJson
+        print("outputJson",outputJson)
         
         return jsonify(outputJson)  
 
