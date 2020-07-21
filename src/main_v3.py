@@ -1,6 +1,7 @@
 import cv2
 import os
 import time
+import io
 
 import json
 import numpy as np
@@ -100,18 +101,19 @@ def api_root():
 
 @app.route('/safebuild', methods = ['POST'])
 def safebuild():
-    if request.headers['Content-Type'] == 'image/jpeg':
-        cameraid  = 234545
-        print("cam id",cameraid)
-        image = request.data# raw data with base64 encoding
-        
-        decoded_data = base64.b64decode(image)
-        np_data = np.fromstring(decoded_data,np.uint8)
-        img = cv2.imdecode(np_data,cv2.IMREAD_UNCHANGED)
-        outputJson = personDetect(img,cameraid)
-        print("outputJson",outputJson)
 
-        return jsonify(outputJson)
+    if (request.args):
+        try:
+            cameraid = request.args.get('CameraId')
+            
+        except Exception as ex:
+            print('EXCEPTION:', str(ex))                                
+
+    imageData = io.BytesIO(request.get_data())
+    img = cv2.imdecode(np.frombuffer(imageData.getbuffer(), np.uint8), -1)
+    outputJson = personDetect(img,cameraid)
+
+    return jsonify(outputJson)
 
 #host='0.0.0.0',
 if __name__ == '__main__':
