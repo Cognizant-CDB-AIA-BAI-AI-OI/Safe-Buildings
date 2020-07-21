@@ -2,6 +2,7 @@ from werkzeug.wrappers import Request, Response
 from flask import Flask
 import cv2
 import os
+import io
 import time
 import json
 import numpy as np
@@ -10,7 +11,6 @@ from flask import request
 from flask import Response
 from flask import jsonify
 import base64
-from PIL import Image, ImageFile
 import tensorflow as tf
 import tensornets as nets
 import cv2
@@ -80,7 +80,7 @@ def get_prediction(frame):
 def personDetect(frame, cameraid):
     frame = cv2.resize(frame, (416,416))
     # load input camera and layout details in json format
-    with open('../data/config.json') as f:
+    with open('config.json') as f:
       configdata = json.load(f)
 
     for j,k in enumerate(configdata['Camera']):
