@@ -23,6 +23,10 @@ app = Flask(__name__)
 # Suppress TF warnings
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
+inputs = tf.placeholder(tf.float32, [None, 416, 416, 3])
+model = nets.YOLOv3COCO(inputs, nets.Darknet19)
+sess = tf.Session()
+sess.run(model.pretrained())
 
 def points_on_Layout_view(pedestrian_boxes, M, Outdata):
     # function to map points on Floor Plan Layout
@@ -43,13 +47,11 @@ def points_on_Layout_view(pedestrian_boxes, M, Outdata):
 def get_prediction(frame):
     # TO-DO build model once
     # Yolo V3 model defination
-    inputs = tf.placeholder(tf.float32, [None, 416, 416, 3])
-    model = nets.YOLOv3COCO(inputs, nets.Darknet19)
+    
 
     classes={'0':'person','1':'bicycle','2':'car','3':'bike','5':'bus','7':'truck'}
     list_of_classes=[0,1,2,3,5,7]
-    sess = tf.Session()
-    sess.run(model.pretrained())
+
     img = frame
     imge=np.array(img).reshape(-1,416,416,3)
 
@@ -72,7 +74,7 @@ def get_prediction(frame):
                     total_pedestrians = total_pedestrians + 1
                     pedestrian_boxes.append(box)
     
-    sess.close()
+    # sess.close()
     return pedestrian_boxes,total_pedestrians
 
 
