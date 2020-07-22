@@ -18,4 +18,4 @@ RUN cd /home/customai/app/ && pip3 install -r requirements.txt
 
 RUN pip3 install tensornets==0.4.6 tensorboard==1.14.0
 
-# ENTRYPOINT [ "python3", "app.py" ]
+ENTRYPOINT [ "python3", "app/app.py" ]
