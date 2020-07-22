@@ -77,18 +77,11 @@ def get_prediction(frame):
 
 
 # Process frame, and map coordinates
-def personDetect(frame, cameraid):
+def personDetect(frame, cameraid, configdata):
     frame = cv2.resize(frame, (416,416))
-    # load input camera and layout details in json format
-    with open('config.json') as f:
-      configdata = json.load(f)
 
-    for j,k in enumerate(configdata['Camera']):
-        if k["CameraId"] == cameraid:
-            data= configdata['Camera'][j]
-
-        else:
-            break
+    data = configdata
+    print(f'data {data}')
 
     srcCordinate = []
     dstCordinate = []
@@ -146,14 +139,21 @@ def safebuild():
             try:
                 cameraID = request.args.get('cameraID')              
             except Exception as ex:
-                print('EXCEPTION:', str(ex))                                
+                print('EXCEPTION:', str(ex))   
+
+        print(f'cameraID {cameraID}')
 
         imageData = io.BytesIO(request.get_data())
         processed_img = cv2.imdecode(np.frombuffer(imageData.getbuffer(), np.uint8), -1)
 
-        outputJson = personDetect(processed_img, cameraID)
+        # load input camera and layout details in json format
+        print(os.listdir())
+        with open('app/inputcordinate.json') as f:
+            configdata = json.load(f)
 
-        print("outputJson",outputJson)
+        outputJson = personDetect(processed_img, cameraID, configdata)
+
+        print("outputJson", outputJson)
         
         return jsonify(outputJson)  
 
@@ -163,4 +163,4 @@ def safebuild():
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0', debug=True)
+    app.run(host= '0.0.0.0', debug=False)
