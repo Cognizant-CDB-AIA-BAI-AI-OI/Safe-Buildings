@@ -82,7 +82,13 @@ def get_prediction(frame):
 def personDetect(frame, cameraid, configdata):
     frame = cv2.resize(frame, (416,416))
 
-    data = configdata
+    # load input camera and layout details in json format
+    for j,k in enumerate(configdata['Camera']):
+        if str(k["CameraId"]) == cameraid:
+            data= configdata['Camera'][j]
+        else:
+            break
+
     print(f'data {data}')
 
     srcCordinate = []
@@ -150,7 +156,7 @@ def safebuild():
 
         # load input camera and layout details in json format
         print(os.listdir())
-        with open('app/inputcordinate.json') as f:
+        with open('data/config.json') as f:
             configdata = json.load(f)
 
         outputJson = personDetect(processed_img, cameraID, configdata)
