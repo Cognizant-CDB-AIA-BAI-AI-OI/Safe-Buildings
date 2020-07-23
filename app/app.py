@@ -89,8 +89,6 @@ def personDetect(frame, cameraid, configdata):
         else:
             break
 
-    print(f'data {data}')
-
     srcCordinate = []
     dstCordinate = []
 
@@ -101,8 +99,6 @@ def personDetect(frame, cameraid, configdata):
     #FloorPlanCoordinates
     for i in data['Areas']['areas'][0]['FloorPlanCoordinates']:
         dstCordinate.append((int(i['X']),int(i['Y'])))
-
-    print(srcCordinate,dstCordinate)
     
     Outdata = {"CameraId": 0,"TimeStamp":"2019-07-11T03:54:16.000Z"}
 
@@ -131,7 +127,6 @@ def personDetect(frame, cameraid, configdata):
     # map point cordinates, when there is person
     if len(pedestrian_boxes) > 0:
         Outdata = points_on_Layout_view(pedestrian_boxes, M,Outdata)
-        print("output Json", Outdata)
         return Outdata
 
 
@@ -149,13 +144,10 @@ def safebuild():
             except Exception as ex:
                 print('EXCEPTION:', str(ex))   
 
-        print(f'cameraID {cameraID}')
-
         imageData = io.BytesIO(request.get_data())
         processed_img = cv2.imdecode(np.frombuffer(imageData.getbuffer(), np.uint8), -1)
 
         # load input camera and layout details in json format
-        print(os.listdir())
         with open('app/config.json') as f:
             configdata = json.load(f)
 
