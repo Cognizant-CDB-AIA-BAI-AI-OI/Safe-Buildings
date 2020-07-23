@@ -11,6 +11,3 @@ docker run -it -p 5000:5000 safe_building
 
 ## Test App
 curl -X POST http://0.0.0.0:5000/safebuild?cameraID="234545" -H "Content-Type: image/jpeg" --data-binary @frameImage.png
-
-# Infer video via script
-python3.6 src/main_v2.py --videopath https://votttest.blob.core.windows.net/vottstorage/GroceryStore2.mp4 --coordinateJson inputcordinate.json --outputJson output.json --outputCycle 30
