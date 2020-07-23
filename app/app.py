@@ -156,7 +156,7 @@ def safebuild():
 
         # load input camera and layout details in json format
         print(os.listdir())
-        with open('data/config.json') as f:
+        with open('app/config.json') as f:
             configdata = json.load(f)
 
         outputJson = personDetect(processed_img, cameraID, configdata)
