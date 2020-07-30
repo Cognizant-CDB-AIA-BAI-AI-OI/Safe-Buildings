@@ -85,11 +85,9 @@ def personDetect(frame, cameraid, areaid, configdata):
     # load input camera and layout details in json format
     for j,k in enumerate(configdata['cameraRules']):
         if (str(k["cameraId"]) == cameraid):
-            for l,m in k['areas']['areas']:
+            for l,m in enumerate(k['areas']['areas']):
                 if (str(m["areaId"]) == areaid):
                    data= configdata['cameraRules'][j]['areas']['areas'][l]
-        else:
-            break
 
     srcCordinate = [[] for _ in range(4)]
     dstCordinate = [[] for _ in range(4)]
