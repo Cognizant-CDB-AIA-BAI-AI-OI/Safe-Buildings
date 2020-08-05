@@ -1,39 +1,24 @@
 {
 	"Output": [{
-		"areaid": 1914,
-		"cameraId": "234545",
-		"peoplecount": 2,
+		"areaid": 1918,
+		"cameraId": "3",
+		"peoplecount": 3,
 		"peopledetails": [{
-			"x": 131,
-			"y": 419
+			"x": 221,
+			"y": 118
 		}, {
-			"x": 803,
-			"y": 744
+			"x": 246,
+			"y": 247
 		}, {
-			"x": 131,
-			"y": 419
-		}, {
-			"x": 803,
-			"y": 744
+			"x": 225,
+			"y": 269
 		}],
-		"timestamp": "2020-07-31T06:48:38.758Z"
+		"timestamp": "2020-08-05T12:33:43.127Z"
 	}, {
-		"areaid": 1914,
-		"cameraId": "234545",
-		"peoplecount": 2,
-		"peopledetails": [{
-			"x": 131,
-			"y": 419
-		}, {
-			"x": 803,
-			"y": 744
-		}, {
-			"x": 131,
-			"y": 419
-		}, {
-			"x": 803,
-			"y": 744
-		}],
-		"timestamp": "2020-07-31T06:48:38.758Z"
+		"areaid": 1919,
+		"cameraId": "3",
+		"peoplecount": 0,
+		"peopledetails": [],
+		"timestamp": "2020-08-05T12:33:43.127Z"
 	}]
 }
