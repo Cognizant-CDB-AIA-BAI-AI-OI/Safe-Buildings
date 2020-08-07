@@ -180,7 +180,7 @@ def personDetect(img, cameraid, configdata):
             print(Outdata)
             output.append(Outdata)
 
-        Output = {"Output": output}
+        Output = {"PeopleTelemetryData": output}
         print("--- %s seconds ---" % (time.time() - start_time))
         return Output
     else:
