@@ -1,7 +1,7 @@
 {
     "cameraRules": [
       {
-        "cameraId": 164,
+        "cameraId": 165,
         "areas": {
           "areas": [
             {
@@ -108,14 +108,14 @@
         }
       },
       {
-        "cameraId": 3,
+        "cameraId": 164,
         "areas": {
           "areas": [
             {
-              "areaId": 1918,
+              "areaId": 1916,
               "areaLabel": "Grocery 1",
               "peopleThreshold": 4,
-              "sectionArea": 214.0,
+              "sectionArea": 209.0,
               "cameraCoordinates": [
                 {
                   "vertex": "D",
@@ -162,10 +162,10 @@
               ]
             },
             {
-              "areaId": 1919,
+              "areaId": 1917,
               "areaLabel": "Grocery 2",
               "peopleThreshold": 4,
-              "sectionArea": 185.0,
+              "sectionArea": 180.0,
               "cameraCoordinates": [
                 {
                   "vertex": "D",
