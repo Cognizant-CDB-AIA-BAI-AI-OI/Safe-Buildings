@@ -100,7 +100,7 @@ def get_prediction(frame):
         if (len(boxes1) != 0 and lab == 'person'):
             for i in range(len(boxes1[j])):
                 box = boxes1[j][i]
-                if boxes1[j][i][4] >= .40:
+                if boxes1[j][i][4] >= .20:
                     count += 1
                     total_pedestrians = total_pedestrians + 1
                     pedestrian_boxes.append(box)
