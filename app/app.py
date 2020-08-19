@@ -206,7 +206,7 @@ def safebuild():
             np.frombuffer(imageData.getbuffer(), np.uint8), -1)
 
         # load input camera and layout details in json format
-        with open('app/config_v6.json') as f:
+        with open('config/config.json') as f:
             configdata = json.load(f)
 
         outputJson = personDetect(processed_img, cameraID, configdata)
