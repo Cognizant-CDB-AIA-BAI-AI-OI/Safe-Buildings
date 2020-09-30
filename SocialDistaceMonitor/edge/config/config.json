@@ -1,0 +1,218 @@
+{
+    "cameraRules": [
+      {
+        "cameraId": 165,
+        "areas": {
+          "areas": [
+            {
+              "areaId": 1913,
+              "areaLabel": "Frozen Food 1",
+              "peopleThreshold": 4,
+              "sectionArea": 214.0,
+              "cameraCoordinates": [
+                {
+                  "vertex": "D",
+                  "x": 69.0,
+                  "y": 157.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 423.0,
+                  "y": 157.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 69.0,
+                  "y": 443.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 23.0,
+                  "y": 443.0
+                }
+              ],
+              "floorPlanCoordinates": [
+                {
+                  "vertex": "B",
+                  "x": 123.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 79.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "D",
+                  "x": 79.0,
+                  "y": 57.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 123.0,
+                  "y": 57.0
+                }
+              ]
+            },
+            {
+              "areaId": 1914,
+              "areaLabel": "Frozen Food 2",
+              "peopleThreshold": 4,
+              "sectionArea": 185.0,
+              "cameraCoordinates": [
+                {
+                  "vertex": "D",
+                  "x": 250.0,
+                  "y": 157.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 288.0,
+                  "y": 157.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 288.0,
+                  "y": 643.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 250.0,
+                  "y": 643.0
+                }
+              ],
+              "floorPlanCoordinates": [
+                {
+                  "vertex": "C",
+                  "x": 188.0,
+                  "y": 57.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 188.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 150.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "D",
+                  "x": 150.0,
+                  "y": 57.0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "cameraId": 164,
+        "areas": {
+          "areas": [
+            {
+              "areaId": 1916,
+              "areaLabel": "Grocery 1",
+              "peopleThreshold": 4,
+              "sectionArea": 209.0,
+              "cameraCoordinates": [
+                {
+                  "vertex": "D",
+                  "x": 115.0,
+                  "y": 90.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 152.0,
+                  "y": 90.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 65.0,
+                  "y": 359.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 170.0,
+                  "y": 359.0
+                }
+              ],
+              "floorPlanCoordinates": [
+                {
+                  "vertex": "B",
+                  "x": 259.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 216.0,
+                  "y": 543.0
+                },
+                {
+                  "vertex": "D",
+                  "x": 216.0,
+                  "y": 52.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 259.0,
+                  "y": 52.0
+                }
+              ]
+            },
+            {
+              "areaId": 1917,
+              "areaLabel": "Grocery 2",
+              "peopleThreshold": 4,
+              "sectionArea": 180.0,
+              "cameraCoordinates": [
+                {
+                  "vertex": "D",
+                  "x": 186.0,
+                  "y": 80.0
+                },
+                {
+                  "vertex": "C",
+                  "x": 216.0,
+                  "y": 80.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 305.0,
+                  "y": 255.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 220.0,
+                  "y": 255.0
+                }
+              ],
+              "floorPlanCoordinates": [
+                {
+                  "vertex": "C",
+                  "x": 324.0,
+                  "y": 57.0
+                },
+                {
+                  "vertex": "B",
+                  "x": 324.0,
+                  "y": 486.0
+                },
+                {
+                  "vertex": "A",
+                  "x": 287.0,
+                  "y": 486.0
+                },
+                {
+                  "vertex": "D",
+                  "x": 287.0,
+                  "y": 57.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
